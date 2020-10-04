@@ -1,4 +1,4 @@
-export const Data = [
+const postsData = [
   {
     id: 1,
     title:
@@ -227,3 +227,7 @@ export const Data = [
     cover: "18.png",
   },
 ];
+
+export function getPosts() {
+  return postsData;
+}

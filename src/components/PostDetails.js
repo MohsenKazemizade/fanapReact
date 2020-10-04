@@ -1,5 +1,5 @@
 import React from "react";
 
-export const PostDetails = () => {
+export default function PostDetails() {
   return <div></div>;
-};
+}

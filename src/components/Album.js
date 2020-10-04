@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 import { grey } from "@material-ui/core/colors";
+import Moment from "react-moment";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -68,9 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-export default function Album() {
+export default function Album({ posts }) {
   const classes = useStyles();
 
   return (
@@ -79,8 +78,8 @@ export default function Album() {
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {posts.map((post) => (
+              <Grid item key={post.id} xs={12} sm={6} md={4}>
                 <Card className={classes.root}>
                   <CardHeader
                     avatar={
@@ -88,13 +87,12 @@ export default function Album() {
                         R
                       </Avatar>
                     }
-                    title="Shrimp and Chorizo Paella"
-                    subheader="September 14, 2016"
+                    title={post.title}
+                    subheader={<Moment>{post.created}</Moment>}
                   />
                   <CardMedia
                     className={classes.media}
-                    image="/static/images/cards/paella.jpg"
-                    title="Paella dish"
+                    image={require(`../postImages/${post.cover}`)}
                   />
                   <CardContent>
                     <Typography
@@ -102,9 +100,7 @@ export default function Album() {
                       color="textSecondary"
                       component="p"
                     >
-                      This impressive paella is a perfect party dish and a fun
-                      meal to cook together with your guests. Add 1 cup of
-                      frozen peas along with the mussels, if you like.
+                      {post.description}
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
