@@ -83,7 +83,7 @@ const PostDetails = (props) => {
               image={require(`../postImages/${props.data.cover}`)}
             />
             <Typography variant="body2" color="textSecondary" component="p">
-              discription : {props.data.discription}
+              discription : {props.data.description}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               body : {props.data.body}
