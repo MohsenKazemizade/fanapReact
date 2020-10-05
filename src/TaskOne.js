@@ -4,25 +4,36 @@ import Album from "./components/Album";
 import PostDetails from "./components/PostDetails";
 
 class TaskOne extends Component {
-  state = {
-    posts: getPosts(),
-    isItemSelected: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: getPosts(),
+      isItemSelected: false,
+      post: [],
+    };
+  }
 
-  handelPostSelect = (post) => {
-    console.log(post);
+  handlePostSelect = (selectedPost) => {
+    const posts = [...this.state.posts];
+    const index = posts.indexOf(selectedPost);
+    const post = posts[index];
+    this.setState({ post, isItemSelected: true });
+  };
+  handleBackToList = () => {
+    this.setState({ isItemSelected: false });
   };
   render() {
-    // console.log(this.state.posts);
     if (this.state.isItemSelected === false)
       return (
         <Album
           posts={this.state.posts}
-          onSelect={() => this.handelPostSelect()}
+          onClick={(e) => this.handlePostSelect(e)}
         />
       );
 
-    return <PostDetails />;
+    return (
+      <PostDetails data={this.state.post} onClick={this.handleBackToList} />
+    );
   }
 }
 

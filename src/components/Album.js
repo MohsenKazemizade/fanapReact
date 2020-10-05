@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Album({ posts }) {
+const Album = (props) => {
   const classes = useStyles();
 
   return (
@@ -78,7 +78,7 @@ export default function Album({ posts }) {
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {posts.map((post) => (
+            {props.posts.map((post) => (
               <Grid item key={post.id} xs={12} sm={6} md={4}>
                 <Card className={classes.root}>
                   <CardHeader
@@ -104,7 +104,11 @@ export default function Album({ posts }) {
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <Button size="small" className={classes.margin}>
+                    <Button
+                      size="small"
+                      onClick={() => props.onClick(post)}
+                      className={classes.margin}
+                    >
                       ReadMore
                     </Button>
                   </CardActions>
@@ -116,4 +120,6 @@ export default function Album({ posts }) {
       </main>
     </React.Fragment>
   );
-}
+};
+
+export default Album;
