@@ -1,10 +1,10 @@
 import React from "react";
-import TaskOne from "./TaskOne";
+import TaskTwo from "./TaskTwo";
 
 function App() {
   return (
     <div>
-      <TaskOne />
+      <TaskTwo />
     </div>
   );
 }
